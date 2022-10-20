@@ -32,7 +32,7 @@ fn find_hyperscan() -> Result<PathBuf> {
         if cfg!(feature = "static") {
             if cfg!(target_os = "macos") {
                 cargo_emit::rustc_link_lib!("c++");
-            } else {
+            } else if !cfg!(target_os = "windows") {
                 cargo_emit::rustc_link_lib!("stdc++");
             }
         }
